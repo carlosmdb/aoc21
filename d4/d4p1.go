@@ -105,22 +105,6 @@ func main() {
 		line_n++
 	}
 
-	//fmt.Printf("draw is %v\n", draw)
-	//fmt.Printf("boards are %v\n", boards)
-
-	/* 	board := [][]int{
-	   		{14, 21, 17, 24, 4},
-	   		{10, 16, 15, 9, 19},
-	   		{18, 8, 2100, 26, 20},
-	   		{22, 11, 1100, 6, 5},
-	   		{2, 0, 12, 100, 7},
-	   	}
-
-	   	draw := []int{
-	   		7, 4, 9, 5, 11, 17, 2100, 2, 0, 14, 21, 24, 10, 16, 1100, 6, 15, 25, 12, 22, 18, 20, 8, 19, 100, 26, 1,
-	   	}
-	*/
-
 	winning_number := 0
 	winning_board := 0
 	board_index := 0
