@@ -21,12 +21,6 @@ type path struct {
 	end   cave
 }
 
-var (
-	currentPath []cave
-	allPaths    [][]cave
-	visited     map[cave]int
-)
-
 func main() {
 	file, err := os.Open("d12/puzzle_input.txt")
 	if err != nil {
@@ -56,54 +50,62 @@ func main() {
 	//fmt.Printf("Paths\n")
 	//printPaths(paths)
 
+	var (
+		currentPath []cave
+		allPaths    [][]cave
+		visited     map[cave]int
+	)
+
+	smallCavesTwiceVisited := func() bool { //return true if there are small caves that have been visited more than once
+		for _, v := range visited {
+			if v == 2 {
+				return true
+			}
+		}
+		return false
+	}
+
+	var dfs func(start cave, end cave, paths []path)
+
+	dfs = func(start cave, end cave, paths []path) {
+		if start.name == "start" || start.name == "end" {
+			if visited[start] == 0 {
+				visited[start]++
+			} else {
+				return
+			}
+		} else if !start.bigCave {
+			if visited[start] == 0 {
+				visited[start]++
+			} else if visited[start] == 1 && !smallCavesTwiceVisited() { // check if there are other caves that have been visited more thance once
+				visited[start]++
+			} else {
+				return
+			}
+		}
+
+		currentPath = append(currentPath, start)
+		if start.name == end.name {
+			//displayPath(currentPath)
+			allPaths = append(allPaths, currentPath)
+			visited[start]--
+			currentPath = currentPath[:len(currentPath)-1]
+			return
+		}
+		n := neighbors(start, paths)
+		for _, next := range n {
+			dfs(next, end, paths)
+		}
+		visited[start]--
+		currentPath = currentPath[:len(currentPath)-1]
+	}
+
 	start, _ := findCave("start", paths)
 	end, _ := findCave("end", paths)
 	visited = make(map[cave]int)
-	DFS(start, end, paths)
+	dfs(start, end, paths)
 	fmt.Printf("Result: %v", len(allPaths))
 
-}
-
-func smallCavesTwiceVisited() bool { //return true if there are small caves that have been visited more than once
-	for _, v := range visited {
-		if v == 2 {
-			return true
-		}
-	}
-	return false
-}
-
-func DFS(start cave, end cave, paths []path) {
-	if start.name == "start" || start.name == "end" {
-		if visited[start] == 0 {
-			visited[start]++
-		} else {
-			return
-		}
-	} else if !start.bigCave {
-		if visited[start] == 0 {
-			visited[start]++
-		} else if visited[start] == 1 && !smallCavesTwiceVisited() { // check if there are other caves that have been visited more thance once
-			visited[start]++
-		} else {
-			return
-		}
-	}
-
-	currentPath = append(currentPath, start)
-	if start.name == end.name {
-		//displayPath(currentPath)
-		allPaths = append(allPaths, currentPath)
-		visited[start]--
-		currentPath = currentPath[:len(currentPath)-1]
-		return
-	}
-	n := neighbors(start, paths)
-	for _, next := range n {
-		DFS(next, end, paths)
-	}
-	visited[start]--
-	currentPath = currentPath[:len(currentPath)-1]
 }
 
 func displayPath(p []cave) {
