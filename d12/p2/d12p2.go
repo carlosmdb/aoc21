@@ -22,9 +22,8 @@ type path struct {
 }
 
 var (
-	currentPath []cave
-	allPaths    [][]cave
-	visited     map[cave]int
+	allPaths [][]cave
+	visited  map[cave]int
 )
 
 func main() {
@@ -74,6 +73,8 @@ func smallCavesTwiceVisited() bool { //return true if there are small caves that
 }
 
 func DFS(start cave, end cave, paths []path) {
+	var currentPath []cave
+
 	if start.name == "start" || start.name == "end" {
 		if visited[start] == 0 {
 			visited[start]++
