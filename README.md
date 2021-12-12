@@ -10,7 +10,7 @@ I'm happy to get PR requests if you think there is a better way to get to the re
 To get the answers to the challenges simply run go (or go run...) on the respective file, like:
 
 ```bash
-go run d1p1.go
+go run d1/p1/d1p1.go
 ```
 
 Go to [https://adventofcode.com/](https://adventofcode.com/) to learn more.
