@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"math"
 	"os"
 
@@ -62,7 +63,10 @@ func increaseEnergyNeighbours(o *octopus, octopuses []*octopus) {
 }
 
 func main() {
-	file, _ := os.Open("puzzle_input.txt")
+	file, err := os.Open("d11/puzzle_input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
@@ -84,11 +88,10 @@ func main() {
 		y++
 	}
 
-	totalEnergy := 1
 	step := 0
-	for ok := true; ok; ok = totalEnergy != 0 {
+	for step < maxSteps {
 		step++
-		//fmt.Printf("Step %v\n", step)
+		fmt.Printf("Step %v\n", step)
 		for _, o := range octopuses {
 			o.step()
 		}
@@ -99,13 +102,16 @@ func main() {
 			}
 		}
 
-		//printMatrix(octopuses, y)
-		totalEnergy = 0
-		for _, o := range octopuses {
-			totalEnergy += o.energy
-		}
+		printMatrix(octopuses, y)
+
 	}
-	fmt.Printf("Total steps %v\n", step)
+
+	totalFlashes := 0
+	for _, o := range octopuses {
+		totalFlashes += o.flashCount
+	}
+
+	fmt.Printf("Total flashes %v\n", totalFlashes)
 
 }
 
