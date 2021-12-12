@@ -69,7 +69,7 @@ func getBasin(heightmap [100][100]int, x int, y int) [100][100]int {
 }
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d9/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

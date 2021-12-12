@@ -54,7 +54,7 @@ func findMatch(result string, entry string, pos int, closingTag string) (string,
 }
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d10/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

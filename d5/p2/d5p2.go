@@ -33,7 +33,7 @@ func getMin(a int, b int) int {
 }
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d5/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

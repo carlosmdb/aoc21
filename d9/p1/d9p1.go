@@ -27,7 +27,7 @@ func convertToIntArray(str string) [10]int {
 }
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d9/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

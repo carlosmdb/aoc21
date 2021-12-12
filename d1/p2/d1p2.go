@@ -18,7 +18,7 @@ func create_sliding_window(input [2000]int) []int {
 }
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d1/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

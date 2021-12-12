@@ -44,7 +44,7 @@ func calculateDistance(data []int, point int) int {
 
 func main() {
 
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d7/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

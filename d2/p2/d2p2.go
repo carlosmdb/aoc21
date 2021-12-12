@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d2/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,6 +19,7 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	horizontal := 0
 	depth := 0
+	aim := 0
 	for scanner.Scan() {
 		entry := scanner.Text()
 		position := strings.Fields(entry)[0]
@@ -28,13 +29,16 @@ func main() {
 		}
 
 		if position == "forward" {
+			depth = depth + (aim * value)
 			horizontal = horizontal + value
 		} else if position == "up" {
-			depth = depth - value
+
+			aim = aim - value
 		} else if position == "down" {
-			depth = depth + value
+
+			aim = aim + value
 		}
 	}
-	fmt.Printf("Position is %d, %d\n", horizontal, depth)
+	fmt.Printf("horizontal is %d, depth is %d, aim is %d \n", horizontal, depth, aim)
 	fmt.Println("Total is ", horizontal*depth)
 }

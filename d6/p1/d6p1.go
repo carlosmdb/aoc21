@@ -33,7 +33,7 @@ func main() {
 
 	number_of_days := 80
 
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d6/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

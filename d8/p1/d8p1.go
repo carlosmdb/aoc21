@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d8/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -23,7 +23,7 @@ func removeEntries(entries []string, char string, position int) []string {
 }
 
 func main() {
-	file, err := os.Open("puzzle_input.txt")
+	file, err := os.Open("d3/puzzle_input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
